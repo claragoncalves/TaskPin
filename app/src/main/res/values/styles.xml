@@ -10,4 +10,16 @@
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowBackground">@color/colorBackground</item>
     </style>
+
+
+    <style name="RecyclerCellTextViewTaskTitle">
+        <item name="android:fontFamily">@font/dosis_medium</item>
+        <item name="android:textSize">20dp</item>
+    </style>
+
+    <style name="SectionTextViewTitle">
+        <item name="android:fontFamily">@font/dosis_semibold</item>
+        <item name="android:textSize">22dp</item>
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
 </resources>

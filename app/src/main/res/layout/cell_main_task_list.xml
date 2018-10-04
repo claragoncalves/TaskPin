@@ -28,12 +28,12 @@
 
         <TextView
             android:id="@+id/cell_main_task_list_title"
+            style="@style/RecyclerCellTextViewTaskTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
-            android:textSize="18sp"
+            android:layout_marginRight="10dp"
             app:layout_constraintLeft_toRightOf="@id/cell_main_task_list_priority_circle"
             app:layout_constraintRight_toLeftOf="@id/guideline_h_80"
             app:layout_constraintTop_toTopOf="parent" />

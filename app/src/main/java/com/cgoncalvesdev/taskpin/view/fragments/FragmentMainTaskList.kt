@@ -9,12 +9,14 @@ import android.view.View
 import android.view.ViewGroup
 import com.cgoncalvesdev.taskpin.R
 import com.cgoncalvesdev.taskpin.controller.TaskController
+import com.cgoncalvesdev.taskpin.model.pojo.Section
 import com.cgoncalvesdev.taskpin.model.pojo.Task
 import com.cgoncalvesdev.taskpin.view.adapters.AdapterMainTaskList
+import com.cgoncalvesdev.taskpin.view.adapters.AdapterSectionTaskList
 import kotlinx.android.synthetic.main.fragment_main_task_list.view.*
 
 class FragmentMainTaskList : Fragment() {
-    private var adapter: AdapterMainTaskList? = null
+    private var adapter: AdapterSectionTaskList? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -26,20 +28,20 @@ class FragmentMainTaskList : Fragment() {
         val recyclerView = view.recyclerview_main_task_list
 
 
-        adapter = AdapterMainTaskList(context as TaskTapListener, context as TaskNotificationSetter)
+        adapter = AdapterSectionTaskList(context as TaskTapListener, context as TaskNotificationSetter)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
-        adapter?.taskList = loadTaskList()
+        adapter?.sectionList = loadSections()
+    }
+    
+    override fun onResume() {
+        super.onResume()
+        adapter?.sectionList = loadSections()
+        adapter?.notifyDataSetChanged()
     }
 
-
-    override fun onStart() {
-        super.onStart()
-        adapter?.taskList = loadTaskList()
-    }
-
-    fun loadTaskList(): MutableList<Task>{
-        return TaskController.getTasks(context!!)
+    fun loadSections(): MutableList<Section>{
+        return TaskController.getTasksDividedBySections(context!!)
     }
 
 

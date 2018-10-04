@@ -34,7 +34,6 @@ class MainActivity : AppCompatActivity(), FragmentMainTaskList.TaskTapListener, 
     fun setupToolbar(){
         val toolbar: Toolbar = findViewById(R.id.toolbar_include)
         toolbar.title = resources.getString(R.string.app_name)
-        //        toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setNavigationIcon(R.drawable.ic_pin)
         setSupportActionBar(toolbar)
     }
