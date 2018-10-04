@@ -33,7 +33,7 @@ class FragmentMainTaskList : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
         adapter?.sectionList = loadSections()
     }
-    
+
     override fun onResume() {
         super.onResume()
         adapter?.sectionList = loadSections()

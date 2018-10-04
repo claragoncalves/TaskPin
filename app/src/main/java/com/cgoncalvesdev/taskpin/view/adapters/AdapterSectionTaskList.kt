@@ -32,10 +32,16 @@ class AdapterSectionTaskList(val taskTapListener: FragmentMainTaskList.TaskTapLi
         fun bindSection(section: Section, taskTapListener: FragmentMainTaskList.TaskTapListener, taskNotificationSetter: FragmentMainTaskList.TaskNotificationSetter){
             with(itemView){
                 task_list_section_title.text = section.name
-                val adapter = AdapterMainTaskList(taskTapListener, taskNotificationSetter)
-                adapter.taskList = section.taskList
-                recyclerview_section_task_list.layoutManager = LinearLayoutManager(itemView.context,LinearLayoutManager.VERTICAL, false)
-                recyclerview_section_task_list.adapter = adapter
+                if (section.taskList.size > 0) {
+                    task_list_section_nothing.visibility = View.GONE
+                    val adapter = AdapterMainTaskList(taskTapListener, taskNotificationSetter)
+                    adapter.taskList = section.taskList
+                    recyclerview_section_task_list.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.VERTICAL, false)
+                    recyclerview_section_task_list.adapter = adapter
+                } else {
+                    task_list_section_nothing.visibility = View.VISIBLE
+                    task_list_section_nothing.text = "Nothing to show here"
+                }
             }
         }
     }

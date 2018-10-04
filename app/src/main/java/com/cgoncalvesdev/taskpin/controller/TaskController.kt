@@ -28,14 +28,8 @@ class TaskController {
             val sections = mutableListOf<Section>()
             val sectionToDo = Section("To Do")
             val sectionDone = Section("Done")
-            val taskList = getTasks(context)
-            for (task in taskList) {
-                if (task.isDone){
-                    sectionDone.taskList.add(task)
-                } else{
-                    sectionToDo.taskList.add(task)
-                }
-            }
+            sectionDone.taskList = TaskPinDB.getInstance(context)?.taskDBDao()?.getTasksByDone() ?: mutableListOf()
+            sectionToDo.taskList = TaskPinDB.getInstance(context)?.taskDBDao()?.getTasksByToDo() ?: mutableListOf()
             sections.add(sectionToDo)
             sections.add(sectionDone)
             return sections

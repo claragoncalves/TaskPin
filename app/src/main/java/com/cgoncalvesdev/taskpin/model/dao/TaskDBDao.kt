@@ -13,6 +13,13 @@ interface TaskDBDao{
     @Query("SELECT * FROM tasks")
     fun getTasks(): MutableList<Task>
 
+
+    @Query("SELECT * FROM tasks WHERE is_done = 1 ORDER BY scheduled_at DESC LIMIT 5")
+    fun getTasksByDone(): MutableList<Task>
+
+    @Query("SELECT * FROM tasks WHERE is_done = 0 ORDER BY scheduled_at DESC")
+    fun getTasksByToDo(): MutableList<Task>
+
     @Query("UPDATE tasks SET is_set = :isSet WHERE id = :taskId")
     fun saveTaskNotificationIsSet(taskId: Long, isSet: Boolean)
 
